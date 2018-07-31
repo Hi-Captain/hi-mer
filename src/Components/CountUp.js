@@ -1,35 +1,49 @@
 import React, { Component } from 'react';
-import UpFormat from './UpFormat';
+import TimeFormat from './TimeFormat';
 
 export default class CountUp extends Component {
   constructor(props){
     super(props)
     this.state = {
       time: 0,
-      running: false
+      running: false,
+      lap: []
     }
   }
 
   render(){
     return (
       <div>
-        {this.state.time}
-        <UpFormat time={this.state.time}></UpFormat>
-        <button onClick={this._run}>Start</button>
-        {this.state.running ? '' : <button onClick={this._reset}>Reset</button>}
+        <TimeFormat className="view-time" time={this.state.time}/>
+        <button onClick={this._run}>{this.state.running ? 'Stop' : 'Start'}</button>
+        <button onClick={this.state.running ? this._lap : this._reset}>{this.state.running ? 'Lap' : 'Reset'}</button>
+        <table className="time-table">
+          <tbody>
+          <tr className={this.state.lap.length > 0 ? 'thead' : 'empty'}>
+            <td>No.</td>
+            <td>TIme</td>
+          </tr>
+          {this.state.lap.map((value, i) => {
+            return(
+              <tr key={i}>
+                <td>{++i}</td>
+                <td><TimeFormat className="lap-time" time={value}/></td>
+              </tr>
+            )
+          })}
+          </tbody>
+        </table>
       </div>
     )
   }
 
-  _run = (e) => {
+  _run = () => {
     if(this.state.running){
-      e.target.innerHTML = 'Start'
       clearInterval(this.interval)
       this.setState({
         running: false
       })
     } else {
-      e.target.innerHTML = 'Stop'
       var startTime = new Date().getTime() - this.state.time
       this.interval = setInterval(() => {
         var getNow = new Date().getTime()
@@ -45,7 +59,12 @@ export default class CountUp extends Component {
   _reset = () => {
     this.setState({
       time: 0,
-      running: false
+      running: false,
+      lap: []
     })
+  }
+
+  _lap = () => {
+    this.state.lap.push(this.state.time)
   }
 }

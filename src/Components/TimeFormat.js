@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class UpFormat extends Component {
+export default class TimeFormat extends Component {
   _getTemplate = () => {
     const seconds = this.props.time / 1000;
     return {
@@ -19,7 +19,7 @@ export default class UpFormat extends Component {
   render(){
     const template = this._getTemplate();
     return (
-      <div>
+      <div className={this.props.className}>
         <span>{this._addZero(template.hour)}:</span>
         <span>{this._addZero(template.min)}:</span>
         <span>{this._addZero(template.sec)}.</span>
