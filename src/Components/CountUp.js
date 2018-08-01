@@ -26,7 +26,7 @@ export default class CountUp extends Component {
 
   render(){
     return (
-      <div>
+      <div className="main">
         <TimeFormat className="view-time" time={this.state.time} msec={true}/>
         <button onClick={this._run}>{this.state.running ? 'Stop' : 'Start'}</button>
         <button onClick={this.state.running ? this._lap : this._reset}>{this.state.running ? 'Lap' : 'Reset'}</button>

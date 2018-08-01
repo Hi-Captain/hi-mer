@@ -41,3 +41,13 @@ Make Timer with react
            의외로 카운트 업 할 때 만들어둔 TimeFormat이 요긴하게 쓰였다.
            이제 스타일을 입히고 마무리해보자.
            (지난 Q에 대한 A : 그냥 clearInterval(this.interval)을 하면 되는거였었다.)
+
+> 2018.08.02
+  - title : Main CSS 정리
+  - content : react-router-dom 활용 버튼 ui 구성.
+              Home.js 생성.
+              Google Marterial icons 활용 Home icon 삽입.
+              Google Fonts 활용.
+  - idea : 처음에는 한 페이지에 3가지 기능을 모두 담으려고 계획했었는데, 
+           css를 어떻게 구성을 해야될까 고민하면서 react-router-dom을 활용해보았다.
+           나머지 기능들도 css 정리를 하자.

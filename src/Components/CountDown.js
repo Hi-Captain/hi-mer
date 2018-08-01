@@ -33,7 +33,7 @@ export default class CountUp extends Component {
 
   render(){
     return (
-      <div>
+      <div className="main">
         <div>
           <span>Hour</span><span>Min</span><span>Sec</span>
         </div>
