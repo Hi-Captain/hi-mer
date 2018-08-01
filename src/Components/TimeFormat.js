@@ -5,7 +5,7 @@ export default class TimeFormat extends Component {
     const seconds = this.props.time / 1000;
     return {
       hour: Math.floor(seconds / 3600).toString(),
-      min: Math.floor(seconds / 60).toString(),
+      min: Math.floor(seconds % 3600 / 60).toString(),
       sec: Math.floor(seconds % 60).toString(),
       msec: (seconds % 1).toFixed(2).substr(2)
     }
@@ -20,10 +20,10 @@ export default class TimeFormat extends Component {
     const template = this._getTemplate();
     return (
       <div className={this.props.className}>
-        <span>{this._addZero(template.hour)}:</span>
-        <span>{this._addZero(template.min)}:</span>
-        <span>{this._addZero(template.sec)}.</span>
-        <span>{template.msec}</span>
+        <span>{this._addZero(template.hour)}</span>
+        <span>:{this._addZero(template.min)}</span>
+        <span>:{this._addZero(template.sec)}</span>
+        {this.props.msec ? <span>.{template.msec}</span> : ''}
       </div>
     )
   }

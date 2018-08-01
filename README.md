@@ -28,3 +28,16 @@ Make Timer with react
            이제 카운트 다운 작업을 진행해보자.
            (Q : _run 함수 안에서 this.interval 함수를 함수 외부에서 clearInterval 시키고 싶은데,
            외부에서 접근할 수 있는 방법이 있을까?)
+
+> 2018.08.01
+  - title : 카운트 다운
+  - content : TimeFormat 시간 오류 수정, msec 표시 여부 설정.
+              TimeFormat 활용 시간 포맷 설정.
+              버튼으로 원하는 시간을 셋팅할 수 있는 ui(갤럭시S7 기본 타이머 어플 참고)로 구성.
+              ComponentDidUpdate로 음수값, 종료값 판단 + 카운트업, 카운트다운 최대값 설정.
+              초기상태(state.time 값 0)에서 start 버튼 기능 제거,
+              카운트다운 중일 때 start버튼은 pause로, reset버튼은 cancel로 변경.
+  - idea : 카운트 다운 까지 잘 진행된 것 같다. 새로운 포맷을 구성하려고 했었는데,
+           의외로 카운트 업 할 때 만들어둔 TimeFormat이 요긴하게 쓰였다.
+           이제 스타일을 입히고 마무리해보자.
+           (지난 Q에 대한 A : 그냥 clearInterval(this.interval)을 하면 되는거였었다.)

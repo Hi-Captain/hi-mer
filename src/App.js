@@ -8,14 +8,14 @@ class App extends Component {
     super(props)
     this._tikTok()
     this.state = {
-      now : (new Date()).toLocaleString()
+      now : (new Date()).toLocaleTimeString()
     }
   }
 
   render() {
     return (
       <div className="App">
-        {this.state.now}
+        현재시간은 {this.state.now} 입니다.
         <div className="wrap">
           <CountUp />
           <CountDown />
@@ -27,7 +27,7 @@ class App extends Component {
   _tikTok(){
     setInterval(() => {
       this.setState({
-        now : (new Date()).toLocaleString()
+        now : (new Date()).toLocaleTimeString()
       })
     }, 1000)
   }
