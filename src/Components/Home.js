@@ -36,7 +36,7 @@ export default class Home extends Component{
     return(
       <div className="main">
         <div className="ko-start">현재시간은</div>
-        <div className="main_time">{this.state.HH}:{this.state.MM}:{this.state.SS}</div>
+        <div className="Home_time">{this.state.HH}:{this.state.MM}:{this.state.SS}</div>
         <div className="ko-end">입니다.</div>
       </div>
     )

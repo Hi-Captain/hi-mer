@@ -4,7 +4,7 @@ import TimeFormat from './TimeFormat';
 const oneHour = 3600000;
 const oneMin = 60000;
 const oneSec = 1000;
-const maxHour = 3
+const maxHour = 9;
 export default class CountUp extends Component {
   constructor(props){
     super(props)
@@ -31,20 +31,24 @@ export default class CountUp extends Component {
     } 
   }
 
+  componentWillUnmount(){
+    clearInterval(this.interval)
+  }
+
   render(){
     return (
-      <div className="main">
-        <div>
+      <div className="main Down-main">
+        <div className="Down-title">
           <span>Hour</span><span>Min</span><span>Sec</span>
         </div>
-        <div>
-          <button onClick={this._UpH}>▲</button><button onClick={this._UpM}>▲</button><button onClick={this._UpS}>▲</button>
-          <TimeFormat className="time" time={this.state.time} msec={false}/>
-          <span><button onClick={this._DownH}>▼</button><button onClick={this._DownM}>▼</button><button onClick={this._DownS}>▼</button></span>
+        <div className="app-wrap">
+          <span className="btn-row"><button onClick={this.state.running ? null : this._UpH}>▲</button><button onClick={this.state.running ? null : this._UpM}>▲</button><button onClick={this.state.running ? null : this._UpS}>▲</button></span>
+          <TimeFormat className="Down-time" time={this.state.time} msec={false}/>
+          <span className="btn-row"><button onClick={this.state.running ? null : this._DownH}>▼</button><button onClick={this.state.running ? null : this._DownM}>▼</button><button onClick={this.state.running ? null : this._DownS}>▼</button></span>
         </div>
         <div>
-          <button onClick={this.state.time === 0 ? this._alert : this._run}>{this.state.running ? 'Pause' : 'Start'}</button>
-          <button onClick={this._reset}>{this.state.running ? 'Cancel' : 'Reset'}</button>
+          <button className={this.state.running ? "Down-btn Down-btn__pause" : "Down-btn Down-btn__start" } onClick={this.state.time === 0 ? this._alert : this._run}>{this.state.running ? 'Pause' : 'Start'}</button>
+          <button className={this.state.running ? "Down-btn Down-btn__cancel" : "Down-btn Down-btn__reset" } onClick={this._reset}>{this.state.running ? 'Cancel' : 'Reset'}</button>
         </div>
       </div>
     )

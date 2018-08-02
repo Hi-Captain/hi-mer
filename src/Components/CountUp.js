@@ -24,28 +24,36 @@ export default class CountUp extends Component {
     }
   }
 
+  componentWillUnmount(){
+    clearInterval(this.interval)
+  }
+  
   render(){
     return (
-      <div className="main">
-        <TimeFormat className="view-time" time={this.state.time} msec={true}/>
-        <button onClick={this._run}>{this.state.running ? 'Stop' : 'Start'}</button>
-        <button onClick={this.state.running ? this._lap : this._reset}>{this.state.running ? 'Lap' : 'Reset'}</button>
-        <table className="time-table">
-          <tbody>
-          <tr className={this.state.lap.length > 0 ? 'thead' : 'empty'}>
-            <td>No.</td>
-            <td>TIme</td>
-          </tr>
-          {this.state.lap.map((value, i) => {
-            return(
-              <tr key={i}>
-                <td>{++i}</td>
-                <td><TimeFormat className="lap-time" time={value} msec={true}/></td>
-              </tr>
-            )
-          })}
-          </tbody>
-        </table>
+      <div className="main Up-main">
+        <div className="Up-view-wrap">
+          <TimeFormat className="Up-view" time={this.state.time} msec={true}/>
+          <button className={this.state.running ? "Up-btn Up-btn__stop" : "Up-btn Up-btn__start"} onClick={this._run}>{this.state.running ? 'Stop' : 'Start'}</button>
+          <button className={this.state.running ? "Up-btn Up-btn__lap" : "Up-btn Up-btn__reset"} onClick={this.state.running ? this._lap : this._reset}>{this.state.running ? 'Lap' : 'Reset'}</button>
+        </div>
+        <div className="Up-table-wrap">
+          <table className="Up-table">
+            <tbody>
+            <tr className={this.state.lap.length > 0 ? 'thead' : 'empty'}>
+              <td>Lap</td>
+              <td>TIme</td>
+            </tr>
+            {this.state.lap.map((value, i) => {
+              return(
+                <tr className="lap" id={'lap'+ (i + 1)} key={i}>
+                  <td>{++i}</td>
+                  <td><TimeFormat className="lap-time" time={value} msec={true}/></td>
+                </tr>
+              )
+            })}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
