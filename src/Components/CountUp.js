@@ -29,24 +29,26 @@ export default class CountUp extends Component {
   }
   
   render(){
+    const { lap, running, time } = this.state
+
     return (
       <div className="main Up-main">
         <div className="Up-view-wrap">
-          <TimeFormat className="Up-view" time={this.state.time} msec={true}/>
-          <button className={this.state.running ? "Up-btn Up-btn__stop" : "Up-btn Up-btn__start"} onClick={this._run}>{this.state.running ? 'Stop' : 'Start'}</button>
-          <button className={this.state.running ? "Up-btn Up-btn__lap" : "Up-btn Up-btn__reset"} onClick={this.state.running ? this._lap : this._reset}>{this.state.running ? 'Lap' : 'Reset'}</button>
+          <TimeFormat className="Up-view" time={time} msec={true}/>
+          <button className={running ? "Up-btn Up-btn__stop" : "Up-btn Up-btn__start"} onClick={this._run}>{running ? 'Stop' : 'Start'}</button>
+          <button className={running ? "Up-btn Up-btn__lap" : "Up-btn Up-btn__reset"} onClick={running ? this._lap : this._reset}>{this.state.running ? 'Lap' : 'Reset'}</button>
         </div>
         <div className="Up-table-wrap">
           <table className="Up-table">
             <tbody>
-            <tr className={this.state.lap.length > 0 ? 'thead' : 'empty'}>
+            <tr className={lap.length > 0 ? 'thead' : 'empty'}>
               <td>Lap</td>
               <td>TIme</td>
             </tr>
-            {this.state.lap.map((value, i) => {
+            {lap.map((value, i) => {
               return(
                 <tr className="lap" id={'lap'+ (i + 1)} key={i}>
-                  <td>{++i}</td>
+                  <td>{lap.length - i }</td>
                   <td><TimeFormat className="lap-time" time={value} msec={true}/></td>
                 </tr>
               )
@@ -87,6 +89,6 @@ export default class CountUp extends Component {
   }
 
   _lap = () => {
-    this.state.lap.push(this.state.time)
+    this.state.lap.unshift(this.state.time)
   }
 }
