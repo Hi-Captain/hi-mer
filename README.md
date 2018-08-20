@@ -66,3 +66,8 @@ Make Timer with react
   - title : Fix _lap
   - content : 랩 리스트 생성할 때 생성 순서 역순으로 생성하기
   - idea : hi-fortune 만들면서 생각나서 수정함.
+
+> 2018.08.20
+- title : Performance optimization
+- content : 카운트 아이템을 따로 관리 하는 LapRow.js 생성
+- idea : 카운트 업 할 때 랩 리스트도 계속 렌더링 되는게 불필요하다 생각해서 수정함.

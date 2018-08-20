@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TimeFormat from './TimeFormat';
+import LapRow from './LapRow';
 
 const max = 359999990
 
@@ -47,10 +48,7 @@ export default class CountUp extends Component {
             </tr>
             {lap.map((value, i) => {
               return(
-                <tr className="lap" id={'lap'+ (i + 1)} key={i}>
-                  <td>{lap.length - i }</td>
-                  <td><TimeFormat className="lap-time" time={value} msec={true}/></td>
-                </tr>
+                <LapRow key={i} index={lap.length - i} value={value}/>
               )
             })}
             </tbody>
@@ -89,6 +87,9 @@ export default class CountUp extends Component {
   }
 
   _lap = () => {
-    this.state.lap.unshift(this.state.time)
+    // this.state.lap.unshift(this.state.time)
+    this.setState({
+      lap: [this.state.time, ...this.state.lap]
+    })
   }
 }
